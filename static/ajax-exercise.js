@@ -4,6 +4,18 @@
 
 function showFortune(evt) {
   // TODO: get the fortune and show it in the #fortune-text div
+  // on button click of 'GET FORTUNE" 
+  // select random fortune from FORTUNES list in server.py
+  // stop default
+  // run the function out of server,py and put it in #fortune-text div 
+  
+  
+  fetch('/fortune')
+    .then(response => response.text())
+    .then(serverData => {
+      document.querySelector('#fortune-text').innerHTML = serverData;
+    })
+
 }
 
 document.querySelector('#get-fortune-button').addEventListener('click', showFortune);
