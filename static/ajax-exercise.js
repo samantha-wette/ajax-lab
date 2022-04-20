@@ -25,10 +25,17 @@ document.querySelector('#get-fortune-button').addEventListener('click', showFort
 function showWeather(evt) {
   evt.preventDefault();
 
-  const url = '/weather.json';
+  //const url = '/weather.json';
   const zipcode = document.querySelector('#zipcode-field').value;
 
-  // TODO: request weather with that URL and show the forecast in #weather-info
+  fetch(`/weather.json?zipcode=${zipcode}`)
+    .then(response => response.json())
+    .then((jsonData) => {
+      document.querySelector('#weather-info').innerHTML = jsonData.forecast;
+    });
+  
+//  document.querySelector('#weather-info').innerText = weather[forecast] // fetch from 'weather.json'
+
 }
 
 document.querySelector('#weather-form').addEventListener('submit', showWeather);
